@@ -33,8 +33,6 @@ jobs:
     runs-on: ubuntu-latest
     needs: Lint
     steps:
-        - name: installer dependances
-          run: pip install -r requirements.txt
         - name: tests
           run: PYTHONPATH=. pytest -v --cov=src
   Build:
