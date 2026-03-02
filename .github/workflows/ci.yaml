@@ -33,13 +33,29 @@ jobs:
     runs-on: ubuntu-latest
     needs: Lint
     steps:
-        - name: tests
-          run: PYTHONPATH=. pytest -v --cov=src
+      - name: recuperer le code
+        uses: actions/checkout@v4
+      - name: setup python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: installer dependances
+        run: pip install -r requirements.txt
+      - name: tests
+        run: PYTHONPATH=. pytest -v --cov=src
   Build:
     name: Build
     runs-on: ubuntu-latest
     needs: Test
     steps:
+      - name: recuperer le code
+        uses: actions/checkout@v4
+      - name: setup python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: installer dependances
+        run: pip install -r requirements.txt
       - name: Generer le package python
         run: python -m build
       - name: Upload du resultat comme artefact
