@@ -42,7 +42,7 @@ jobs:
       - name: installer dependances
         run: pip install -r requirements.txt
       - name: tests
-        run: PYTHONPATH=. pytest -v --cov=src
+        run: PYTHONPATH=. pytest -v --cov=app
   Build:
     name: Build
     runs-on: ubuntu-latest
