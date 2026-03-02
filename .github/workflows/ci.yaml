@@ -48,15 +48,22 @@ jobs:
     runs-on: ubuntu-latest
     needs: Test
     steps:
-      - name: recuperer le code
+      - name: Recuperer le code
         uses: actions/checkout@v4
-      - name: setup python
+
+      - name: Setup Python
         uses: actions/setup-python@v5
         with:
           python-version: "3.11"
-      - name: installer dependances
+
+      - name: Installer dependances
         run: pip install -r requirements.txt
+
       - name: Generer le package python
         run: python -m build
+
       - name: Upload du resultat comme artefact
-        uses: actionS/upload-artifact@v4
+        uses: actions/upload-artifact@v4
+        with:
+          name: build
+          path: dist/
